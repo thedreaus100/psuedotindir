@@ -1,0 +1,42 @@
+<div layout="column" flex layout-padding>
+    <div flex class="card-container" layout-fill ng-class="{centered:main.queryMedia('gt-sm')}" ng-show="mainPanel.users.length>0">
+        <md-card class="stacked" ng-repeat="user in mainPanel.users | limitTo:3" ng-class="{z1:$index==0,z2:$index==1,z3:$index==2,like:mainPanel.liked}" md-padding md-swipe-left="mainPanel.dislike($event,user)" md-swipe-right="mainPanel.like($event,user)" layout="column" ng-click="mainPanel.showProfile(user.id)">
+            <div flex style="background:url({{user.photos[0].value}}) 50% 50% no-repeat,#333333;background-size:100% auto">
+            </div>
+            <div layout="row" layout-padding md-padding>
+                <span>{{user.displayName | firstName}}</span>
+                <span flex></span>
+                <span>{{user.distance}} miles</span>
+            </div>
+        </md-card>
+    </div>
+    <div flex layout-fill ng-show="mainPanel.users.length==0" layout-align="center center" layout="column">
+        <div align="center">
+            <h3>
+                Sorry There Is No one Out there, Try broadening your search or try Moving!
+            </h3>
+            <div>
+                <small>Requires Geolocation...We $q not to follow you.</small>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="seperator"></div>
+<!--Controls-->
+<div layout="column" layout-align="center center" ng-show="mainPanel.users.length>0">
+    <div flex class="actions-panel">
+        <md-button class="md-whiteframe-z1 md-fab action small">
+            <md-icon md-svg-icon="av:ic_replay_24px" aria-label="Left Menu"></md-icon>
+        </md-button>
+        <md-button class="md-whiteframe-z3 md-fab action large" ng-click="mainPanel.dislike($event)">
+            <md-icon md-svg-icon="content:ic_clear_24px" aria-label="Left Menu"></md-icon>
+        </md-button>
+        <md-button class="md-whiteframe-z3 md-fab action large" ng-click="mainPanel.like($event)">
+            <md-icon md-svg-icon="social:ic_whatshot_24px" aria-label="Left Menu"></md-icon>
+        </md-button>
+        <md-button class="md-whiteframe-z1 md-fab action small">
+            <md-icon md-svg-icon="communication:ic_location_on_24px" aria-label="Left Menu"></md-icon>
+        </md-button>
+    </div>
+</div>
+<div class="seperator"></div>

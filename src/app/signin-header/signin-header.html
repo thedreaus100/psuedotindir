@@ -1,0 +1,58 @@
+<div class="signin-header">
+    <md-toolbar class="header fixed">
+        <div class="md-toolbar-tools">
+            <md-icon md-svg-icon="social:ic_whatshot_24px" aria-label="logo" class='logo md-primary hue-1'></md-icon>
+            <span hide-sm class="md-primary hue-1">Psuedo-Tindir</span>
+            <span flex></span>
+            <div layout="row" hide-sm>
+                <md-button flex class="md-accent hue-1">
+                    Blog
+                </md-button>
+                <md-button flex class="md-accent hue-1">
+                    Support
+                </md-button>
+                <md-button flex class="md-accent hue-1">
+                    Jobs
+                </md-button>
+                <md-button flex class="md-accent hue-1">
+                    Press
+                </md-button>
+            </div>
+            <div hide-gt-sm>
+                <md-menu class="signin-menu">
+                    <!-- Trigger element is a md-button with an icon -->
+                    <md-button aria-label="Open Blog" class="md-icon-button" ng-click="$mdOpenMenu($event)">
+                        <md-icon md-svg-icon="ic_view_headline_24px" aria-label="Menu" md-menu-origin md-position-mode="target-right target"></md-icon>
+                    </md-button>
+                    <md-menu-content width="4" hide-gt-sm>
+                        <md-menu-item class="sign-in">
+                            <md-button aria-label="Open Blog">
+                                <md-icon md-svg-icon="communication:ic_comment_24px" aria-label="android" md-menu-align-target></md-icon>
+                                Blog
+                            </md-button>
+                        </md-menu-item>
+                        <md-menu-item class="sign-in">
+                            <md-button aria-label="Open Blog">
+                                <md-icon md-svg-icon="communication:ic_live_help_24px" aria-label="android" md-menu-align-target></md-icon>
+                                Help
+                            </md-button>
+                        </md-menu-item>
+                        <md-menu-item class="sign-in">
+                            <md-button aria-label="Open Blog">
+                                <md-icon md-svg-icon="ic_work_24px" aria-label="android" md-menu-align-target></md-icon>
+                                Jobs
+                            </md-button>
+                        </md-menu-item class="sign-in">
+                        <md-divider></md-divider>
+                        <md-menu-item class="sign-in">
+                            <md-button aria-label="Open Blog">
+                                <md-icon md-svg-icon="communication:ic_forum_24px" aria-label="android" md-menu-align-target></md-icon>
+                                Press
+                            </md-button>
+                        </md-menu-item>
+                    </md-menu-content>
+                </md-menu>
+            </div>
+        </div>
+    </md-toolbar>
+</div>

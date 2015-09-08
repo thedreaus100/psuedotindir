@@ -1,0 +1,6 @@
+{
+  "_id": "_design/user",
+  "updates": {
+    "all": "function(doc, req) {\r\n\r\n    var data = req.body ? JSON.parse(req.body) : req.query || req.form;\r\n    var msg;\r\n\r\n    if (!doc) {\r\n        doc = {\r\n            _id: req.id || req.uuid\r\n        }\r\n        msg = \"doc \" + doc._id + \" created successfully\";\r\n    } else {\r\n        msg = \"doc \" + doc._id + \" updated successfully\";\r\n    }\r\n\r\n    setFields(doc,data);\r\n    return [doc, toJSON({\r\n        msg: msg,\r\n        doc: doc\r\n    })];\r\n    \r\n    function setFields(doc,data) {\r\n\r\n        ///Very Bad for trusted sources only... which doesn't exist.\r\n\r\n        for (var key in data) {\r\n\r\n            if(key.charCodeAt(0) != 95)\r\n              doc[key] = data[key] || doc[key];\r\n        }\r\n\r\n        doc.date_modified = new Date();\r\n        doc.date_created = doc.date_created || doc.date_modified;\r\n       doc.user=true;    }\r\n}\r\n"
+  }
+}

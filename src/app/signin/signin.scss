@@ -1,0 +1,23 @@
+.signin-container{
+	height:100%;
+
+	.button-container{
+
+		background-color:transparent;
+		padding:25px;
+		margin-bottom:12%;
+		color:#eeeeee;
+		text-shadow:2px 2px 2px #000000;
+		font-family:"proxima-nova-soft","Helvetica Neue",helvetica,sans-serif;
+		position:relative;
+		z-index:1;
+
+		.caption{
+			margin-bottom:0px
+		}
+
+		img{
+			max-height:100px
+		}
+	}
+}

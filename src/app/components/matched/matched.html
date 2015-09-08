@@ -1,0 +1,20 @@
+<md-dialog aria-label="List dialog" class="matched">
+    <md-dialog-content layout="column" layout-align="center center">
+        <h1>Its a Match</h1>
+        <div layout="row">
+            <div style="background:url({{mCtrl.me.photos[0].value}}) 50% 50% no-repeat;background-size:100% auto" class="image-icon md-whiteframe-1"></div>
+            <div style="background:url({{mCtrl.user.photos[0].value}}) 50% 50% no-repeat;background-size:100% auto" class="image-icon md-whiteframe-1"></div>
+        </div>
+        <div>
+            You and {{mCtrl.user.displayName | firstName}} have liked each other!
+        </div>
+        <div layout="row">
+            <md-button class="match-options md-whiteframe-z1" ng-click="mCtrl.close()">
+                Message
+            </md-button>
+            <md-button class="match-options md-whiteframe-z1" ng-click="mCtrl.close()">
+                Keep Playing
+            </md-button>
+        </div>
+    </md-dialog-content>
+</md-dialog>

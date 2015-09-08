@@ -1,0 +1,19 @@
+<md-toolbar class="header md-whiteframe-z2">
+    <div class="main-header">
+        <div class="md-toolbar-tools">
+            <md-button aria-label="Open Left Panel" class="md-icon-button" ng-click="mainHeader.toggleLeftPanel($event)">
+                <md-icon md-svg-icon="ic_view_headline_24px" aria-label="Left Menu" class="md-accent md-hue-1"></md-icon>
+            </md-button>
+            <md-divider></md-divider>
+            <md-button ng-href="/#/home" class="md-icon-button">
+                <md-icon md-svg-icon="social:ic_whatshot_24px" aria-label="logo" class='logo md-accent'></md-icon>
+            </md-button>
+            <span hide-sm class="md-accent md-hue-1">Psuedo-Tindir</span>
+            <md-button aria-label="Open Right Panel" class="md-icon-button" ng-click="mainHeader.toggleRightPanel($event)" hide-gt-md>
+                <md-icon md-svg-icon="communication:ic_chat_24px" aria-label="Left Menu" class="md-primary md-hue-1"></md-icon>
+            </md-button>
+            <span flex></span>
+            <span></span>
+        </div>
+    </div>
+</md-toolbar>

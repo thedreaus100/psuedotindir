@@ -1,0 +1,13 @@
+<div layout="column" flex layout-fill>
+    <md-sidenav md-component-id="left-panel" class="md-sidenav-left left-panel md-whiteframe-z4" layout="column" ng-class="{full:main.queryMedia('sm')}">
+        <div ui-view="leftpanel" flex layout="column"></div>
+    </md-sidenav>
+    <section layout="row" flex>
+        <md-content class="main-panel" flex layout="column" layout-align-gt-sm="center center">
+            <div ui-view="mainpanel" layout="column" flex></div>
+        </md-content>
+        <md-sidenav class="md-sidenav-right md-whiteframe-z2 right-panel" md-component-id="right-panel" md-is-locked-open="$mdMedia('gt-md')" flex-sm="100" ng-class="{full:main.queryMedia('sm')}">
+            <div ui-view="rightpanel" flex layout="column"></div>
+        </md-sidenav>
+    </section>
+</div>

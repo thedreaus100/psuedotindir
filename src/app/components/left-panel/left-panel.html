@@ -1,0 +1,45 @@
+<md-toolbar class="md-accent md-hue-1 md-tall" layout="column">
+    <img ng-src="{{leftPanel.user.photos[0].value}}" class="background" />
+    <md-button aria-label="Close Right Panel" class="md-icon-button exit-button" ng-click="leftPanel.close($event)">
+        <md-icon md-svg-icon="content:ic_clear_24px" aria-label="Left Menu"></md-icon>
+    </md-button>
+    <div class="inner" layout="row" layout-fill layout-align="center center">
+        <div layout="column">
+            <img ng-src="{{leftPanel.user.photos[0].value}}" class="profile_pic md-whiteframe-1"></div>
+        <div layout="column">
+            <h3 class="displayName">
+                {{leftPanel.user.firstName}}
+                <a href="#/home/"><small>View Profile</small></a>
+            </h3>
+        </div>
+    </div>
+    </div>
+</md-toolbar>
+<md-content flex layout-padding>
+    <div flex layout-padding>
+        <md-list layout-padding>
+            <md-list-item class="md-3-line">
+                <md-icon md-svg-icon="ic_search_24px" aria-label="Left Menu"></md-icon>
+                <div class="md-list-item-text">
+                    <h3>Search Options</h3>
+                    <p layout-align="start start">
+                        <label>Filter Interests: </label>
+                        <md-switch ng-model="leftPanel.filterInterests" aria-label="Switch 1" ng-change="leftPanel.setFilterInterests(leftPanel.filterInterests)">
+                            {{ leftPanel.getFilterInterests() ? 'yes':'no'}}
+                        </md-switch </p>
+                </div>
+            </md-list-item>
+            <md-divider></md-divider>
+            <md-list-item class="md-3-line">
+                <md-icon md-svg-icon="ic_search_24px" aria-label="Left Menu"></md-icon>
+                <div class="md-list-item-text">
+                    <h3>Search Options</h3>
+                    <p layout-align="start start">
+                        <label>Distance: {{leftPanel.distance}} miles</label>
+                        <md-slider ng-model="leftPanel.distance" step="5" min="5" max="100" ng-change="leftPanel.setDistance(leftPanel.distance)">
+                        </md-slider>
+                </div>
+            </md-list-item>
+        </md-list>
+    </div>
+</md-content>

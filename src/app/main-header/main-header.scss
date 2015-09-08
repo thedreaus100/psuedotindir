@@ -1,0 +1,14 @@
+.main-header {
+    text-shadow: 2px 2px 2px #666666;
+    .logo {
+        margin-right: 10px;
+        text-shadow: 2px 2px 2px #000000
+    }
+    .md-toolbar-tools {
+        background-color: #0d47a1
+    }
+}
+
+md-toolbar {
+    color: white
+}

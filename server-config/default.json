@@ -1,0 +1,30 @@
+{
+    "redis": {
+        "host": "localhost",
+        "port": "6379",
+        "options": {}
+    },
+    "couchdb": {
+        "host": "localhost",
+        "port": "5984",
+        "database": "psuedotindir"
+    },
+    "elastic": {
+        "host":"localhost",
+        "port":9200,
+        "default_index":"psuedotindir"
+    },
+    "static_mappings": [{
+        "route": "*/app",
+        "endpoint": "src/app"
+    }, {
+        "route": "*/assets",
+        "endpoint": "src/assets"
+    }, {
+        "route": "/bower_components",
+        "endpoint": "bower_components"
+    }, {
+        "route": "/",
+        "endpoint": ".tmp/serve"
+    }]
+}
