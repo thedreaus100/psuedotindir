@@ -62,7 +62,6 @@ section.jumbotron {
 .logo {
     text-shadow: 2px 2px 2px #000000;
     font-size: 48px;
-    margin-right:-15px;
 }
 
 img.profile_pic {
@@ -80,8 +79,9 @@ img.profile_pic {
     width: 75px;
     height: 75px;
     border-radius: 50%;
+    overflow:hidden;
     border-style: solid;
-    border-color: white;
+    border-color: #eeeeee;
     margin-right: 15px
 }
 

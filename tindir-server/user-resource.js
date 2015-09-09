@@ -8,6 +8,7 @@ function UserResource(config) {
 
     _self.findOrCreate = findOrCreate;
     _self.findUserById = findUserById;
+    _self.updateUser = updateUser;
 
     //////////
 
@@ -41,7 +42,7 @@ function UserResource(config) {
     function updateUser(userid, data, callback) {
 
         var path = config.database + "/_design/user/_update/all/" + userid;
-        console.log("updating user: ", +userid);
+        console.log("updating user: ", userid);
         _self.put(path, data, function(err, response) {
 
             if (err) callback(err);

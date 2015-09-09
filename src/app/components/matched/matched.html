@@ -2,8 +2,8 @@
     <md-dialog-content layout="column" layout-align="center center">
         <h1>Its a Match</h1>
         <div layout="row">
-            <div style="background:url({{mCtrl.me.photos[0].value}}) 50% 50% no-repeat;background-size:100% auto" class="image-icon md-whiteframe-1"></div>
-            <div style="background:url({{mCtrl.user.photos[0].value}}) 50% 50% no-repeat;background-size:100% auto" class="image-icon md-whiteframe-1"></div>
+            <dynamic-image src="mCtrl.me.photos[0].value" class="image-icon medium md-whiteframe-z1" alt="{{mCtrl.me.displayName}}"></dynamic-image>
+            <dynamic-image src="mCtrl.user.photos[0].value" class="image-icon medium md-whiteframe-z1" alt="{{mCtrl.user.displayName}}"></dynamic-image>
         </div>
         <div>
             You and {{mCtrl.user.displayName | firstName}} have liked each other!

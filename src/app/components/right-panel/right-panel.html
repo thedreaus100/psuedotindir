@@ -11,7 +11,7 @@
     <md-list flex>
         <md-list-item class="md-3-line" ng-repeat="user in rightPanel.users">
             <div layout="column" layout-align="center center" layout-padding>
-                <div style="background:url({{user.photos[0].value || user.photos[0]}}) 50% 50% no-repeat;background-size:100% auto" class="image-icon medium" alt="{{user.displayName}}"></div>
+                <dynamic-image src="user.photos[0].value" class="image-icon medium md-whiteframe-z1" alt="{{user.displayName}}"></dynamic-image>
             </div>
             <div class="md-list-item-text">
                 <h3>{{user.displayName}}</h3>

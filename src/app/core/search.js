@@ -5,27 +5,32 @@
         .module('tindir.core')
         .service('search', search);
 
-    search.$inject = ['UserResource', 'geolocation', 'searchOptions', '$q'];
+    search.$inject = ['UserResource', 'geolocation', '$q'];
 
     /* @ngInject */
-    function search(UserResource, geolocation, searchOptions, $q) {
+    function search(UserResource, geolocation, $q) {
 
         var vm = this;
+        var _options;
         vm.users = [];
         vm.findMatches = findMatches;
         vm.next = next;
+
         ////////////////
 
-        function findMatches(from, user) {
+        function findMatches(from, user, options) {
+
+            //should pass in options instead
 
             var deferred = $q.defer();
-
-            if (vm.users && vm.users.length > 0) {
+            if ((vm.users && vm.users.length > 0) && JSON.stringify(_options) == JSON.stringify(options)) {
                 console.log("already has users!!!");
                 deferred.resolve(vm.users);
             } else {
+                console.log("options have changed!");
+                _options = options;
                 geolocation.then(function(location) {
-                    return UserResource.findMatches(location, user.interests, searchOptions.options, from);
+                    return UserResource.findMatches(location, user.interests, options, from);
                 }).then(handleSuccess, handleFailure);
             }
 
@@ -44,8 +49,8 @@
 
             function removeDuplicates(user) {
 
+                //temp way to remove yourself from the list!
                 for (var vusers in vm.users) {
-                    console.log(vm.users[vusers].id, user.id);
                     if (vm.users[vusers].id == user._id) {
                         return false
                     }

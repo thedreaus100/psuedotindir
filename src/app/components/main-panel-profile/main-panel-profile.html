@@ -1,8 +1,7 @@
 <div layout="column" flex layout-padding>
     <div flex class="card-container" layout-fill ng-class="{centered:main.queryMedia('gt-sm')}" ng-show="profilePanel.profile_user">
-        <md-card class="stacked z1" md-padding layout="column">
-            <div flex style="background:url({{profilePanel.profile_user.photos[0].value}}) 50% 50% no-repeat,#333333;background-size:100% auto">
-            </div>
+        <md-card class="stacked z1" md-padding layout="column" layout-padding>
+            <dynamic-image src="profilePanel.profile_user.photos[0].value" layout="column" flex fit="true"></dynamic-image>
             <div layout="row" layout-padding md-padding>
                 <span>{{profilePanel.profile_user.displayName}}</span>
                 <span flex></span>
@@ -10,7 +9,7 @@
             <div layout-padding>
                 <md-subheader>Interests</md-subheader>
                 <md-padding>
-                    <md-chips ng-model="profilePanel.profile_user.interests" readonly="!profilePanel.isMe()" placeholder="What are you interested in?"></md-chips>
+                    <md-chips ng-model="profilePanel.profile_user.interests" readonly="!profilePanel.isMe()" placeholder="What are you interested in?" md-on-append="profilePanel.updateInterests($chip)"></md-chips>
                 </md-padding>
             </div>
         </md-card>

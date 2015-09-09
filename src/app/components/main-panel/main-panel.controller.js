@@ -5,10 +5,10 @@
         .module('tindir.components')
         .controller('MainPanelController', MainPanelController);
 
-    MainPanelController.$inject = ["$timeout", "sessionManager", "user", "search", "$location", "matchedDialog"];
+    MainPanelController.$inject = ["$timeout", "sessionManager", "user", "search", "$location", "matchedDialog", "searchOptions"];
 
     /* @ngInject */
-    function MainPanelController($timeout, sessionManager, user, search, $location, matchedDialog) {
+    function MainPanelController($timeout, sessionManager, user, search, $location, matchedDialog, searchOptions) {
         var vm = this;
         var from = 0;
         vm.title = 'MainPanelController';
@@ -25,16 +25,16 @@
 
         function activate() {
 
-            findMatches(from);
-            sessionManager.addListener("searchOptions", function(searchOptions) {
-                findMatches(from);
+            findMatches(from, searchOptions.options);
+            sessionManager.addListener("searchOptions", function(options) {
+                findMatches(from, options);
             });
         }
 
-        function findMatches(from) {
+        function findMatches(from, options) {
 
             search
-                .findMatches(from, user)
+                .findMatches(from, user, options)
                 .then(function(users) {
                     vm.users = users;
                 });
@@ -66,7 +66,7 @@
             vm.users = search.next();
             if (vm.users.length == 0) {
                 from += 10;
-                findMatches(from);
+                findMatches(from, searchOptions.options);
             }
         }
 
