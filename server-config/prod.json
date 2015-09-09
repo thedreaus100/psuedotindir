@@ -1,0 +1,33 @@
+{
+    "domain": {
+        "host":"http://localhost"
+    },
+    "redis": {
+        "host": "localhost",
+        "port": "6379",
+        "options": {}
+    },
+    "couchdb": {
+        "host": "localhost",
+        "port": "5984",
+        "database": "psuedotindir"
+    },
+    "elastic": {
+        "host": "localhost",
+        "port": 9200,
+        "default_index": "psuedotindir"
+    },
+    "static_mappings": [{
+        "route": "*/scripts",
+        "endpoint": "dist/scripts"
+    }, {
+        "route": "*/assets",
+        "endpoint": "dist/assets"
+    }, {
+        "route": "*/styles",
+        "endpoint": "dist/styles"
+    }, {
+        "route": "/",
+        "endpoint": "dist"
+    }]
+}
