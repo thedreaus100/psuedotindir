@@ -17,10 +17,10 @@ function UserResource(config) {
         //should actually be find create or update!!!
         findUserById(userid, function(err, response) {
 
-            if (err) callback(err, null);
+            if (err) return callback(err, null);
             else {
                 console.log("updating or creating user!");
-                updateUser(userid, data, callback);
+                return updateUser(userid, data, callback);
             }
         })
     }
@@ -45,7 +45,7 @@ function UserResource(config) {
         console.log("updating user: ", userid);
         _self.put(path, data, function(err, response) {
 
-            if (err) callback(err);
+            if (err) callback(err, null);
             else if (response.doc) {
                 callback(null, response.doc);
             } else {

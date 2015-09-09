@@ -66,16 +66,18 @@ function createServer(config) {
                 var sid = uuid.v1();
                 return sid;
             },
-            secret: 'keyboard cat',
+            secret: 'psuedotindir-309u1093241309',
             resave: true,
             saveUninitialized: false,
             store: config.redis ?
                 new RedisStore({
                     host: config.redis.host,
-                    port: config.redis.port
+                    port: config.redis.port,
+                    ttl: 30
                 }) : new RedisStore()
         }))
         .use(passport.initialize())
+        //.use(passport.session()) Some error with passport session
         .use("/api", tindirAPI(config))
         .use(stylus.middleware(path.join(__dirname, "/")))
         .use(express.static(path.join(__dirname, "/")))

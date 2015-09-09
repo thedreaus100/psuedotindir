@@ -5,7 +5,12 @@
             <div layout="row" layout-padding md-padding>
                 <span>{{user.displayName | firstName}}</span>
                 <span flex></span>
-                <span>{{user.distance}} miles</span>
+                <span ng-show="!mainPanel.displayInterests">{{user.distance}} miles</span>
+                <span ng-show="mainPanel.displayInterests">
+                    <span ng-repeat="interest in user.interests | filterMatches:mainPanel.sessionUser.interests">
+                        {{interest}}
+                    </span>
+                </span>
             </div>
         </md-card>
     </div>

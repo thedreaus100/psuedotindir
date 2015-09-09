@@ -27,15 +27,17 @@
         }
 
         //Doesn't Execute just need base url
-        function findMatches(location, interests, searchOptions, from) {
+        function findMatches(location, searchOptions, from) {
 
-            console.log("options:", searchOptions.distance);
-            return Restangular.one("api/user/search").getList("geo-filter", {
+            var data = {
                 lat: location.lat,
                 lon: location.lon,
                 distance: searchOptions.distance,
+                sortbyinterests: searchOptions.sortByInterests,
+                interests:searchOptions.interests,
                 from: from || 0
-            });
+            }
+            return Restangular.one("api/user/search").getList("matches", data);
         }
     }
 })();

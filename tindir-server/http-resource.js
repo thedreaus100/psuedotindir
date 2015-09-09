@@ -24,15 +24,15 @@ function get(config, path, query, secure, callback) {
     request(config, path, "GET", null, secure, callback);
 }
 
-function post(config, path, data, callback) {
+function post(config, path, data, secure, callback) {
     request(config, path, "POST", data, secure, callback)
 }
 
-function put(config, path, data, callback) {
+function put(config, path, data, secure, callback) {
     request(config, path, "PUT", data, secure, callback)
 }
 
-function del(config, path, data, callback) {
+function del(config, path, data, secure, callback) {
     request(config, path, "DELETE", data, secure, callback)
 }
 
@@ -66,8 +66,8 @@ function getHttpRequest(config, path, method) {
             host: config.host,
             port: config.port,
             path: "/" + path,
-            headers:config.headers || {
-                "content-type":"application/json"
+            headers: config.headers || {
+                "content-type": "application/json"
             }
 
         }, function(response) {

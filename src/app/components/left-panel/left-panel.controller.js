@@ -14,8 +14,8 @@
         vm.user = user;
 
         vm.close = close;
-        vm.setFilterInterests = searchOptions.setFilterInterests;
-        vm.getFilterInterests = searchOptions.getFilterInterests;
+        vm.setSortByInterests = searchOptions.setSortByInterests;
+        vm.getSortByInterests = searchOptions.getSortByInterests;
         vm.setDistance = searchOptions.setDistance;
         vm.getDistance = searchOptions.getDistance;
 

@@ -14,10 +14,11 @@ function authorizationRoute(config) {
 
     userResource = new UserResource(config.couchdb);
     facebookResource = new FacebookResource({});
+    //should get its secret from environment variables
     passport.use(new FacebookStrategy({
-        clientID: "1609257382674983",
-        clientSecret: "08840d7f39668f53a74cd5371956ec4b",
-        callbackURL: "http://localhost/api/auth/facebook/callback",
+        clientID: process.env.FACEBOOK_CLIENT_ID || "1609257382674983",
+        clientSecret: process.env.FACEBOOK_CLIENT_SECRET || "08840d7f39668f53a74cd5371956ec4b",
+        callbackURL: (config.domain.host || "http://localhost") + "/api/auth/facebook/callback",
         profileFields: [
             'id',
             'displayName',
@@ -62,12 +63,10 @@ function verifyFacebook(accessToken, refreshToken, profile, done) {
 
         if (err) {
             console.log(err);
-            done(err);
-            return;
+            return done(err);
         } else {
             console.log("user id: ", user._id);
-            done(null, user);
-            return;
+            return done(null, user);
         }
     });
 }

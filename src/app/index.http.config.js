@@ -3,7 +3,8 @@
 
     angular
         .module('tindir')
-        .config(httpConfig);
+        .config(httpConfig)
+        .config(restangular);
 
     /** @ngInject */
     function httpConfig($httpProvider) {
@@ -23,6 +24,13 @@
                     return $q.reject(response);
                 }
             };
+        });
+    }
+
+    function restangular(RestangularProvider) {
+
+        RestangularProvider.setRestangularFields({
+            id: "_id"
         });
     }
 

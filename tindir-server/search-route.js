@@ -13,12 +13,16 @@ function searchRoute(config, index, types) {
     //temp until we can handle mutlipe indexes
     var type = typeof types == "Array" ? types[0] : types;
     var route = express.Router({})
-        .get("/geo-filter", geoFilter(index, type));
+        .get("/matches", getMatches(index, type));
 
     return route;
 }
 
-function geoFilter(index, type) {
+/*
+    Route 
+    HTTP /matches
+*/
+function getMatches(index, type) {
 
     return function(req, res, next) {
 
@@ -41,15 +45,20 @@ function geoFilter(index, type) {
             lon = req.query.lon;
         }
 
+        //distance
         var unit = req.query.unit || "mi";
         var distance = req.query.distance || "30mi";
-        var query = {
-            index: index,
-            type: type,
-            body: {
-                "from": req.query.from || 0,
-                "size": "10",
-                "query": {
+        var sort = [];
+        if (req.query.sortbyinterests) {
+            sort.push("_score");
+        } else {
+            sort.push(geoFilter(lat, lon, unit));
+        };
+
+        //search_query
+        var search_query = {
+            "bool": {
+                "must": [{
                     "filtered": {
                         "filter": {
                             "geo_distance": {
@@ -62,19 +71,23 @@ function geoFilter(index, type) {
                             }
                         }
                     }
-                },
-                "sort": [{
-                    "_geo_distance": {
-                        "location": {
-                            "lat": lat,
-                            "lon": lon
-                        },
-                        "order": "asc",
-                        "unit": unit,
-                        "mode": "min",
-                        "distance_type": "sloppy_arc"
+                }],
+                "should": [{
+                    "terms": {
+                        "interests.raw_interests": req.query.interests || []
                     }
                 }]
+            }
+        }
+
+        var query = {
+            index: index,
+            type: type,
+            body: {
+                "from": req.query.from || 0,
+                "size": "10",
+                "query": search_query,
+                "sort": sort
             }
         }
         console.log(query);
@@ -85,5 +98,21 @@ function geoFilter(index, type) {
             console.error(err);
             res.status(500).json(err).end();
         });
+    }
+}
+
+function geoFilter(lat, lon, unit, mode, order) {
+
+    return {
+        "_geo_distance": {
+            "location": {
+                "lat": lat,
+                "lon": lon
+            },
+            "order": order || "asc",
+            "unit": unit || "mi",
+            "mode": mode || "min",
+            "distance_type": "sloppy_arc"
+        }
     }
 }

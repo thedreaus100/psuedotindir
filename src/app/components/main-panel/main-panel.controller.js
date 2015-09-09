@@ -12,7 +12,9 @@
         var vm = this;
         var from = 0;
         vm.title = 'MainPanelController';
+        vm.displayInterests = false;
         vm.users = [];
+        vm.sessionUser = user;
         vm.matchedUsers = [];
 
         vm.like = like;
@@ -25,8 +27,11 @@
 
         function activate() {
 
+            vm.displayInterests = searchOptions.getSortByInterests();
+            searchOptions.setInterests(user.interests, false); //false means don't propagate
             findMatches(from, searchOptions.options);
             sessionManager.addListener("searchOptions", function(options) {
+                vm.displayInterests = searchOptions.getSortByInterests();
                 findMatches(from, options);
             });
         }
@@ -49,7 +54,6 @@
 
             $timeout(function() {
                 next();
-                console.log(user, matchedUser);
                 matchedDialog.open(event, user, matchedUser);
             });
         }

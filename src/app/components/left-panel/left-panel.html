@@ -23,9 +23,9 @@
                 <div class="md-list-item-text">
                     <h3>Search Options</h3>
                     <p layout-align="start start">
-                        <label>Filter Interests: </label>
-                        <md-switch ng-model="leftPanel.filterInterests" aria-label="Switch 1" ng-change="leftPanel.setFilterInterests(leftPanel.filterInterests)">
-                            {{ leftPanel.getFilterInterests() ? 'yes':'no'}}
+                        <label>Sort By Interests: </label>
+                        <md-switch ng-model="leftPanel.sortByInterests" aria-label="Toggle Sort" ng-change="leftPanel.setSortByInterests(leftPanel.sortByInterests)">
+                            {{ leftPanel.getSortByInterests() ? 'yes':'no'}}
                         </md-switch </p>
                 </div>
             </md-list-item>
@@ -36,7 +36,7 @@
                     <h3>Search Options</h3>
                     <p layout-align="start start">
                         <label>Distance: {{leftPanel.distance}} miles</label>
-                        <md-slider ng-model="leftPanel.distance" step="5" min="5" max="100" ng-change="leftPanel.setDistance(leftPanel.distance)">
+                        <md-slider ng-model="leftPanel.distance" step="5" min="5" max="100" ng-change="leftPanel.setDistance(leftPanel.distance)" aria-label="Set Distance">
                         </md-slider>
                 </div>
             </md-list-item>

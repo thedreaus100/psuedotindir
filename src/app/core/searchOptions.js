@@ -14,8 +14,8 @@
         vm.options = {
             distance: 10
         }
-        this.setFilterInterests = setFilterInterests;
-        this.getFilterInterests = getFilterInterests;
+        this.setSortByInterests = setSortByInterests;
+        this.getSortByInterests = getSortByInterests;
         this.setInterests = setInterests;
         this.getInterests = getInterests;
         this.setDistance = setDistance;
@@ -23,31 +23,30 @@
 
         ////////////////
 
-        function setFilterInterests(flag) {
+        function setSortByInterests(flag, propagate) {
 
-            options.filterInterests = flag;
-            update();
+            vm.options.sortByInterests = flag;
+            update(propagate);
         }
 
-        function getFilterInterests() {
+        function getSortByInterests() {
 
-            return vm.options.filterInterests;
+            return vm.options.sortByInterests;
         }
 
-         function setInterests(interests) {
+        function setInterests(interests, propagate) {
 
-            options.interests = interests;
-            update();
+            vm.options.interests = interests;
+            update(propagate);
         }
 
         function getInterests() {
-
             return vm.options.interests;
         }
 
-        function setDistance(dist) {
+        function setDistance(dist, propagate) {
             vm.options.distance = dist;
-            update();
+            update(propagate);
         }
 
         function getDistance(dist) {
@@ -58,8 +57,10 @@
             return vm.options;
         }
 
-        function update() {
-            sessionManager.update("searchOptions", vm.options);
+        function update(propagate) {
+
+            if (propagate == undefined || propagate)
+                sessionManager.update("searchOptions", vm.options);
         }
     }
 })();

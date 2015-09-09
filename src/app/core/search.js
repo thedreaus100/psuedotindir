@@ -24,20 +24,18 @@
 
             var deferred = $q.defer();
             if ((vm.users && vm.users.length > 0) && JSON.stringify(_options) == JSON.stringify(options)) {
-                console.log("already has users!!!");
                 deferred.resolve(vm.users);
             } else {
-                console.log("options have changed!");
-                _options = options;
+                _options = shallowClone(options);
                 geolocation.then(function(location) {
-                    return UserResource.findMatches(location, user.interests, options, from);
+                    return UserResource.findMatches(location, options, from);
                 }).then(handleSuccess, handleFailure);
             }
 
             return deferred.promise;
 
             function handleSuccess(users) {
-                vm.users = users.filter(removeDuplicates).map(mapDistance);
+                vm.users = users.map(mapDistance);
                 console.log("retrieved: " + vm.users.length + " users");
                 deferred.resolve(vm.users);
             }
@@ -61,7 +59,7 @@
             function mapDistance(user) {
 
                 var u = user._source;
-                u.distance = Math.round(user.sort[0]);
+                if (user.sort) u.distance = Math.round(user.sort[0]);
                 return u;
             }
         }
@@ -69,6 +67,14 @@
         function next() {
             vm.users.shift();
             return vm.users;
+        }
+
+        function shallowClone(obj) {
+            var cl = {};
+            for (var attr in obj) {
+                cl[attr] = obj[attr];
+            }
+            return cl;
         }
     }
 })();

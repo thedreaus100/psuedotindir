@@ -1,4 +1,7 @@
 {
+    "domain": {
+        "host":"http://localhost"
+    },
     "redis": {
         "host": "localhost",
         "port": "6379",
@@ -10,9 +13,9 @@
         "database": "psuedotindir"
     },
     "elastic": {
-        "host":"localhost",
-        "port":9200,
-        "default_index":"psuedotindir"
+        "host": "localhost",
+        "port": 9200,
+        "default_index": "psuedotindir"
     },
     "static_mappings": [{
         "route": "*/app",

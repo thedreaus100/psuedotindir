@@ -24,8 +24,16 @@
             .state('home', {
                 url: '/home',
                 resolve: {
-                    user: function(UserResource) {
-                        return UserResource.getSessionUser();
+                    user: function(UserResource, $q) {
+
+                        var deferred = $q.defer();
+
+                        UserResource.getSessionUser().then(function(user) {
+                            deferred.resolve(user);
+                        }, function(err) {
+                            deferred.resolve(null);
+                        });
+                        return deferred.promise;
                     }
                 },
                 views: {
@@ -66,12 +74,9 @@
                         resolve: {
                             profile_user: function(user, $stateParams, UserResource) {
 
-                                if ($stateParams.userid) {
+                                if ($stateParams.userid)
                                     return UserResource.getUserById($stateParams.userid);
-                                } else {
-                                    console.log("profile user is session user");
-                                    return user;
-                                }
+                                else return user;
                             }
                         }
                     }
