@@ -71,7 +71,7 @@ function createServer(config) {
                 new RedisStore({
                     host: config.redis.host,
                     port: config.redis.port,
-                    ttl: 30
+                    ttl: 60
                 }) : new RedisStore()
         }))
         .use(passport.initialize())

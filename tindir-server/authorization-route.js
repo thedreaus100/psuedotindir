@@ -42,7 +42,7 @@ function authorizationRoute(config) {
             passport.authenticate('facebook', {
                 scope: ['email', 'public_profile'],
                 successRedirect: '/',
-                failureRedirect: '/signin'
+                failureRedirect: '/#/signin'
             })
         )
 

@@ -23,9 +23,11 @@
             //should pass in options instead
 
             var deferred = $q.defer();
+            console.log(_options, options);
             if ((vm.users && vm.users.length > 0) && JSON.stringify(_options) == JSON.stringify(options)) {
                 deferred.resolve(vm.users);
             } else {
+                console.log("updating list!");
                 _options = shallowClone(options);
                 geolocation.then(function(location) {
                     return UserResource.findMatches(location, options, from);
@@ -36,6 +38,7 @@
 
             function handleSuccess(users) {
                 vm.users = users.map(mapDistance);
+                console.log(vm.users);
                 console.log("retrieved: " + vm.users.length + " users");
                 deferred.resolve(vm.users);
             }
