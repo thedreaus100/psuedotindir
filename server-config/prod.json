@@ -1,6 +1,6 @@
 {
     "domain": {
-        "host":"http://localhost"
+        "host":"http://psuedotindir.cloudapp.net"
     },
     "redis": {
         "host": "localhost",
@@ -8,12 +8,12 @@
         "options": {}
     },
     "couchdb": {
-        "host": "localhost",
+        "host": "100.76.28.55",
         "port": "5984",
         "database": "psuedotindir"
     },
     "elastic": {
-        "host": "localhost",
+        "host": "100.76.48.74",
         "port": 9200,
         "default_index": "psuedotindir"
     },

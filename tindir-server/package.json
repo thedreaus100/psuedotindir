@@ -13,6 +13,7 @@
     "elasticsearchclient": "^0.5.3",
     "express": "^4.13.3",
     "express-session": "^1.11.3",
+    "geoip-lite": "^1.1.6",
     "node-uuid": "^1.4.3",
     "redis": "^0.12.1",
     "stylus": "^0.52.0"
