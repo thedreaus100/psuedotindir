@@ -37,8 +37,6 @@ function createServer(config) {
 
     console.log("Creating Psuedo-Tindir Server...");
 
-    buffer = new Buffer(config);
-
     //serialize session user
     var userResource = new UserResource(config.couchdb);
     passport.serializeUser(function(user, done) {
@@ -73,7 +71,7 @@ function createServer(config) {
                 new RedisStore({
                     host: config.redis.host,
                     port: config.redis.port,
-                    ttl: 30
+                    ttl: 60
                 }) : new RedisStore()
         }))
         .use(passport.initialize())

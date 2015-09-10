@@ -12,6 +12,7 @@
 
         function filterFilter(list, compareList) {
 
+            if (!compareList) return list;
             return list.filter(function(item) {
                 return compareList.indexOf(item) != -1;
             });

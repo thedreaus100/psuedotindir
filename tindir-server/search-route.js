@@ -49,7 +49,13 @@ function getMatches(index, type) {
         var unit = req.query.unit || "mi";
         var distance = req.query.distance || "30mi";
         var sort = [];
-        if (req.query.sortbyinterests) {
+        if (!req.query.interests || req.query.interests.constructor != Array) {
+            if (req.query.interests) req.query.interests = [req.query.interests];
+        }
+        ///////
+        console.dir(req.query);
+        if (req.query.sortbyinterests &&
+            (req.query.sortbyinterests == true || req.query.sortbyinterests === "true")) {
             sort.push("_score");
         } else {
             sort.push(geoFilter(lat, lon, unit));
