@@ -37,8 +37,6 @@ function createServer(config) {
 
     console.log("Creating Psuedo-Tindir Server...");
 
-    buffer = new Buffer(config);
-
     //serialize session user
     var userResource = new UserResource(config.couchdb);
     passport.serializeUser(function(user, done) {
