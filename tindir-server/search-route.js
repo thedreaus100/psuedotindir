@@ -49,7 +49,7 @@ function getMatches(index, type) {
         var unit = req.query.unit || "mi";
         var distance = req.query.distance || "30mi";
         var sort = [];
-        if (!req.query.interests || typeof req.query.interests.constructor != Array) {
+        if (!req.query.interests || req.query.interests.constructor != Array) {
             if (req.query.interests) req.query.interests = [req.query.interests];
         }
         ///////
