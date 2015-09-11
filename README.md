@@ -21,6 +21,10 @@ Adding cool features
 
  add puesdotindir.com to hosts file
 
+### Local Testing
+
+Blame facebook
+
  Unix:
  	/etc/hosts
 
@@ -29,7 +33,7 @@ Adding cool features
 
  Then add
  	127.0.0.1    puesdotindir.com
- 	127.0.0.1    www.puesdotindir.com
+ 	127.0.0.1    puesdotindir.cloudapp.net
 
 ## Tools 
 
@@ -62,13 +66,12 @@ Adding cool features
 	* Serve Client Files
 	* Authentication
 	* Authorization
-	* Data Storage??
 
 - Couchdb
 	* Store User Details
 	* Used for relational data
-	* Join User Data w/ Image (Video?) Data
-	* ?Store User Messages?
+	* Query All User's Messages
+	* Store User Messages (To Do)
 
 - Redis Session Data
 	* GeoSearch??
@@ -94,22 +97,15 @@ Adding cool features
 ###ElasticSearch
 [Download ElasticSearch](https://www.elastic.co/downloads/elasticsearch)
 
-####ElasticSearch CouchDB River Plugin
-Rivers allow data to be sync from couchdb to ElasticSearch
-
-`[ElasticSearch Installation]/bin/plugin install elasticsearch/elasticsearch-river-couchdb/2.6.0`
-
---more--
-
-[What is a River?](https://github.com/elastic/elasticsearch-river-couchdb/blob/master/README.md)
-
-###Gulp (Optional)
+###Gulp
 `npm install -g gulp`
 
 ###Configuration
 `server-config/default.json`
 
 Set the appropriate configurations for couchdb, elasticSearch & Redis
+
+Make sure to copy default.json to another file and specify the correct endpoints.
 
 ###Create Girlfriends
 Creates JSON documents which represent various users on the platform
@@ -121,24 +117,20 @@ You can create as many girlfriends as you want.... It creates one girlfriend for
 `node createGirlFriends;`
 
 ###Create Databases
-Creates and intializes the databases, uploads the information & and then creates a [River](https://www.elastic.co/guide/en/elasticsearch/rivers/current/index.html)
+Creates and intializes the databases, uploads the information
 
 `node createDatabases`
 
 ##Run
 
-###via Gulp
-####Front-End only
+###Gulp via .tmp
 w/ BrowserSync (Won't work unless back-end requests are disabled)
 
-`gulp serve`
-
-####w/ Server
 `gulp node-serve`
 
-###w/out Gulp
-`node index.js`
-
+####w/ via dist
+`gulp build`
+`gulp node index.js server-config/prod.json`
 
 
 
